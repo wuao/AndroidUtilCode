@@ -1,0 +1,39 @@
+//includeBuild 'configPlugin'
+
+//buildscript {
+////    ConfigUtils.init(gradle)
+//    repositories {
+//        mavenLocal()
+//        mavenCentral()
+//    }
+//
+//    dependencies {
+//        classpath 'com.blankj:buildSrc-plugin:1.0'
+//    }
+//}
+
+//apply plugin: "com.blankj.buildSrc"
+
+
+//dependencyResolutionManagement {
+//    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+//    repositories {
+//        google()
+//        mavenCentral()
+//        jcenter() // Warning: this repository is going to shut down soon
+//        maven {url 'https://jetpack.io'} // Warning: this repository is going to shut down soon
+//    }
+//
+////    configurations.all {
+////        resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+////
+////        resolutionStrategy.eachDependency {
+////            if (it.requested.group == 'com.android.support' && !it.requested.name.contains(
+////                    'multidex')) {
+////                it.useVersion Config.supportVersion
+////            }
+////        }
+////    }
+//}
+
+apply from: 'module_config.gradle'
