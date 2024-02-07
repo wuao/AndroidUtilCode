@@ -491,23 +491,21 @@ public final class LogUtils {
         }
     }
 
-    private static void print2Console(int type, String tag, String msg) {
+    public static void print2Console(int type, String tag, String msg) {
         Log.println(type, tag, msg);
         if (CONFIG.mOnConsoleOutputListener != null) {
             CONFIG.mOnConsoleOutputListener.onConsoleOutput(type, tag, msg);
         }
     }
 
-    private static void print2File(final int type, final String tag, final String msg) {
+    public static void print2File(final int type, final String tag, final String msg) {
         Date d = new Date();
-        String format = getSdf().format(d);
-        String date = format.substring(0, 10);
+        String time = getSdf().format(d);
         String currentLogFilePath = getCurrentLogFilePath(d);
         if (!createOrExistsFile(currentLogFilePath, date)) {
             Log.e("LogUtils", "create " + currentLogFilePath + " failed!");
             return;
         }
-        String time = format.substring(11);
         final String content = time +
                 T[type - V] +
                 "/" +
@@ -517,23 +515,22 @@ public final class LogUtils {
         input2File(currentLogFilePath, content);
     }
 
-    private static String getCurrentLogFilePath(Date d) {
-        String format = getSdf().format(d);
-        String date = format.substring(0, 10);
+    public static String getCurrentLogFilePath(Date d) {
+        String time = getSdf().format(d);
         return CONFIG.getDir() + CONFIG.getFilePrefix() + "_"
-                + date + "_" +
+                + time + "_" +
                 CONFIG.getProcessName() + CONFIG.getFileExtension();
     }
 
 
-    private static SimpleDateFormat getSdf() {
+    public static SimpleDateFormat getSdf() {
         if (simpleDateFormat == null) {
             simpleDateFormat = new SimpleDateFormat("yyyy_MM_dd HH:mm:ss.SSS ", Locale.getDefault());
         }
         return simpleDateFormat;
     }
 
-    private static boolean createOrExistsFile(final String filePath, final String date) {
+    public static boolean createOrExistsFile(final String filePath, final String date) {
         File file = new File(filePath);
         if (file.exists()) return file.isFile();
         if (!UtilsBridge.createOrExistsDir(file.getParentFile())) return false;
